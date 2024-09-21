@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentimental Timer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@700&family=Raleway:wght@400&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/originals/14/22/da/1422dad3d3fd986c9d346bb9d79c47d4.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Raleway', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: white; /* Change text color for better visibility */
+        }
+        .container {
+            text-align: center;
+            width: 100%;
+            padding: 0 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Optional: Add a translucent background for readability */
+            border-radius: 10px; /* Optional: Round the corners */
+        }
+        .timer {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+        .phrase {
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.5rem;
+            color: #FFD700; /* Gold color for better contrast */
+        }
+        .spacer {
+            margin: 40px 0;
+        }
+        .message {
+            font-family: 'Pacifico', cursive;
+            font-size: 2rem;
+            color: #FFD700; /* Gold color for better contrast */
+            display: none;
+        }
+        .wait-text {
+            font-size: 1.2rem;
+            color: #FFD700; /* Gold color for better contrast */
+            margin-top: 5px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #FFD700; /* Gold color for better contrast */
+        }
+        img {
+            max-width: 300px; /* Adjust size as needed */
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="timer" id="countdown1"></div>
+        <div class="wait-text">Wait for the timer to end</div>
+        <div class="phrase">awel mara shoftak feha</div>
+        <div class="spacer"></div>
+        <div class="timer" id="countdown2"></div>
+        <div class="wait-text">Wait for the timer to end</div>
+        <div class="phrase">a5er mara hanshoof ba3d</div>
+        <div class="message" id="loveMessage">بحبك يا خالد شوقي - عبدالله</div>
+        <img src="YOUR_IMAGE_URL_HERE" alt="Special Memory">
+    </div>
+    <audio controls autoplay loop style="display: none;">
+        <source src="YOUR_MUSIC_URL_HERE" type="audio/mpeg"> <!-- Replace with the link to your calm music -->
+        Your browser does not support the audio element.
+    </audio>
+    <div class="footer">Never forgetting Khaledinho</div>
+    <script>
+        function updateCountdown1() {
+            const startDate = new Date('October 1, 2019 07:00:00').getTime(); // Adjusted to achieve 344 days
+            const now = new Date().getTime();
+            const distance = now - startDate;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown1').innerHTML = `${days} : ${hours} : ${minutes} : ${seconds}`;
+        }
+
+        function updateCountdown2() {
+            const endDate = new Date('October 6, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = endDate - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown2').style.display = 'none';
+                document.getElementById('loveMessage').style.display = 'block';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown2').innerHTML = `${days} : ${hours} : ${minutes} : ${seconds}`;
+        }
+
+        setInterval(updateCountdown1, 1000);
+        setInterval(updateCountdown2, 1000);
+    </script>
+</body>
+</html>
